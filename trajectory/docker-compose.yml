@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:7.0
+    container_name: trajectory-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: trajectory
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - trajectory-net
+
+  # Trajectory Backend API Service
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: trajectory-server
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 5001
+      MONGO_URI: mongodb://mongo:27017/trajectory
+      JWT_ACCESS_SECRET: trajectory_prod_access_secret_key_change_in_production
+      JWT_REFRESH_SECRET: trajectory_prod_refresh_secret_key_change_in_production
+      CORS_ORIGIN: http://localhost
+      LLM_PROVIDER: mock
+    ports:
+      - "5001:5001"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - trajectory-net
+
+  # Trajectory Frontend Client & Reverse Proxy
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: trajectory-client
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - trajectory-net
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  trajectory-net:
+    driver: bridge

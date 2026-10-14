@@ -1,0 +1,24 @@
+{
+  "name": "trajectory",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "server",
+    "client",
+    "ml-service"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server\" \"npm run dev --workspace=client\"",
+    "build": "npm run build --workspace=shared && npm run build --workspace=server && npm run build --workspace=client",
+    "test": "npm run test --workspace=shared && npm run test --workspace=server && npm run test --workspace=client",
+    "test:shared": "npm run test --workspace=shared",
+    "test:server": "npm run test --workspace=server",
+    "test:client": "npm run test --workspace=client",
+    "seed": "npm run seed --workspace=server",
+    "lint": "npm run lint --workspace=shared && npm run lint --workspace=server && npm run lint --workspace=client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "fsd-project-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix trajectory",
+    "test": "npm test --prefix trajectory",
+    "test:shared": "npm run test:shared --prefix trajectory",
+    "test:server": "npm run test:server --prefix trajectory",
+    "test:client": "npm run test:client --prefix trajectory",
+    "build": "npm run build --prefix trajectory",
+    "seed": "npm run seed --prefix trajectory"
+  }
+}
