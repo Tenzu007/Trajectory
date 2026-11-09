@@ -1,0 +1,19 @@
+{
+  "name": "dairy-pulse-platform",
+  "version": "2.0.0",
+  "description": "Unified Dairy Plant Energy, Waste Analytics & AI Hygiene Management System",
+  "private": true,
+  "workspaces": [
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:client\"",
+    "dev:backend": "cd backend && PYTHONPATH=. ../venv/bin/python3 -m uvicorn app.main:app --host 0.0.0.0 --port 5050 --reload",
+    "dev:client": "npm run dev --workspace=client",
+    "test:backend": "cd backend && PYTHONPATH=. ../venv/bin/pytest tests/test_all_services.py -v",
+    "build": "npm run build --workspace=client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

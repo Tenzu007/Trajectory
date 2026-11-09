@@ -1,13 +1,34 @@
+# Dependencies
 node_modules/
 dist/
 build/
+
+# OS and logs
 *.DS_Store
 *.log
+
+# Testing & Coverage
 coverage/
 .nyc_output/
-__pycache__/
-*.pyc
-*.pyo
-.venv/
-env/
 .pytest_cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+
+# Databases & local environment
+*.db
+*.sqlite
+*.sqlite3
+.env
+!.env.example
+
+# Large uploads & processed media
+hackathon/backend/uploads/*
+!hackathon/backend/uploads/CCTV_*.mp4
+hackathon/backend/uploads/processed/

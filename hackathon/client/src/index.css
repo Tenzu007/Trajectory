@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #FAF8F2;
+    color: #353A35;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif-title {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F1E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #AFC4AD;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #526B58;
+}
+
+/* Nature-inspired soft card & glassmorphism */
+.dairy-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #E8E2D6;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(53, 76, 60, 0.05);
+}
+
+.dairy-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dairy-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(53, 76, 60, 0.1);
+  border-color: #AFC4AD;
+}
+
+.badge-reusable {
+  background: #EAF2E8;
+  color: #354C3C;
+  border: 1px solid #AFC4AD;
+}
+
+.badge-treatable {
+  background: #FEF7EA;
+  color: #A36A00;
+  border: 1px solid #F5D399;
+}
+
+.badge-disposal {
+  background: #FDF1EE;
+  color: #9E3F26;
+  border: 1px solid #F5BDB0;
+}
+
